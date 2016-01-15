@@ -9,7 +9,8 @@ var Preferences = React.createClass({
     return {
       closeVMOnQuit: localStorage.getItem('settings.closeVMOnQuit') === 'true',
       metricsEnabled: metrics.enabled(),
-      registryUrl: regHub.registryUrl()
+      registryUrl: regHub.registryUrl(),
+      recommendedUrl: regHub.recommendedUrl()
     };
   },
   handleGoBackClick: function () {
@@ -36,12 +37,20 @@ var Preferences = React.createClass({
       enabled: checked
     });
   },
+
   handleChangeRegistryUrl: function (e) {
     var value = e.target.value;
     this.setState({
       registryUrl: value
     });
     regHub.setRegistryUrl(value);
+  },
+  handleChangeRecommendedUrl: function (e) {
+    var value = e.target.value;
+    this.setState({
+      recommendedUrl: value
+    });
+    regHub.setRecommendedUrl(value);
   },
   render: function () {
     var vmSettings;
@@ -76,6 +85,7 @@ var Preferences = React.createClass({
               <input type="checkbox" checked={this.state.metricsEnabled} onChange={this.handleChangeMetricsEnabled}/>
             </div>
           </div>
+
           <div className="option">
             <div className="option-name">
               Set the Registry url
@@ -85,6 +95,16 @@ var Preferences = React.createClass({
             </div>
           </div>
         </div>
+            <div className="option">
+            <div className="option-name">
+              Set the Recommendation base url
+            </div>
+            <div className="option-value">
+              <input type="text" value={this.state.recommendedUrl} onChange={this.handleChangeRecommendedUrl}/>
+             </div>
+           </div>
+          </div>
+
       </div>
     );
   }

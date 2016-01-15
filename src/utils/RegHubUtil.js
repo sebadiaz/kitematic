@@ -7,6 +7,7 @@ import repositoryServerActions from '../actions/RepositoryServerActions';
 import tagServerActions from '../actions/TagServerActions';
 
 let REGHUB2_ENDPOINT = process.env.REGHUB2_ENDPOINT || 'https://hub.docker.com/v2';
+let KITEMATIC_ENDPOINT = process.env.KITEMATIC_ENDPOINT || 'https://kitematic.com';
 let searchReq = null;
 let PAGING = 24;
 
@@ -20,6 +21,15 @@ module.exports = {
   // save the registry url
   setRegistryUrl: function (url) {
     REGHUB2_ENDPOINT=url;
+  },
+  // get the kitematic url
+  recommendedUrl: function () {
+   return KITEMATIC_ENDPOINT;
+  },
+
+  // save the kitematic url
+  setRecommendedUrl: function (url) {
+   KITEMATIC_ENDPOINT=url;
   },
 
   // Normalizes results from search to v2 repository results
@@ -77,7 +87,7 @@ module.exports = {
   },
 
   recommended: function () {
-    request.get('https://kitematic.com/recommended.json', (error, response, body) => {
+    request.get(`${KITEMATIC_ENDPOINT}/recommended.json`, (error, response, body) => {
       if (error) {
         repositoryServerActions.error({error});
         return;
