@@ -6,8 +6,8 @@ import hubUtil from '../utils/HubUtil';
 import repositoryServerActions from '../actions/RepositoryServerActions';
 import tagServerActions from '../actions/TagServerActions';
 
-let REGHUB2_ENDPOINT = process.env.REGHUB2_ENDPOINT || 'https://hub.docker.com/v2';
-let KITEMATIC_ENDPOINT = process.env.KITEMATIC_ENDPOINT || 'https://kitematic.com';
+let REGHUB2_ENDPOINT = process.env.REGHUB2_ENDPOINT || 'http://localhost/v2';//'https://hub.docker.com/v2';
+let KITEMATIC_ENDPOINT = process.env.KITEMATIC_ENDPOINT || 'http://localhost';//'https://kitematic.com';
 let searchReq = null;
 let PAGING = 24;
 

@@ -48,6 +48,8 @@ var ContainerHomePreview = React.createClass({
   render: function () {
     var preview;
     if (this.props.defaultPort) {
+      var plotUrl='http://' + this.props.ports[this.props.defaultPort].url;
+      
       var frame = React.createElement('webview', {className: 'frame', id: 'webview', src: 'http://' + this.props.ports[this.props.defaultPort].url, autosize: 'on'});
       preview = (
         <div className="web-preview wrapper">

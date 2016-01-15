@@ -94,7 +94,7 @@ var Preferences = React.createClass({
               <input type="text" value={this.state.registryUrl} onChange={this.handleChangeRegistryUrl}/>
             </div>
           </div>
-        </div>
+
             <div className="option">
             <div className="option-name">
               Set the Recommendation base url

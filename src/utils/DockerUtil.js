@@ -117,7 +117,7 @@ export default {
       if (!containerData.HostConfig || (containerData.HostConfig && !containerData.HostConfig.PortBindings)) {
         containerData.PublishAllPorts = true;
       }
-      
+
       if (image.Config.Cmd) {
         containerData.Cmd = image.Config.Cmd;
       } else if (!image.Config.Entrypoint) {
@@ -495,6 +495,9 @@ export default {
       // data is associated with one layer only (can be identified with id)
       stream.pipe(JSONStream.parse()).on('data', data => {
         if (data.error) {
+          if(data.error.indexOf('not found')!== -1){
+            return;
+          }
           error = data.error;
           return;
         }
